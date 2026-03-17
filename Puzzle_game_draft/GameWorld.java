@@ -15,8 +15,10 @@ public class GameWorld extends World
     int level_available=1;
     int cellsPerFile;
     int current;
+    boolean StoryMode=false;
     boolean LevelActive=false;
     int currentLevel=1;
+    int currentStory=1;
     static final int screenWidth=1000;
     static final int screenHeight=600;
     StartCell startCell;
@@ -31,8 +33,10 @@ public class GameWorld extends World
         // Create a new world with screenwidthXscreenheight cells with a cell size of 1x1 pixels.
         super(screenWidth, screenHeight, 1); 
         menu = new Menu(level_available);
-        this.addObject(menu,0,0);
-        this.addObject(new LevelSelectButton(),100,100);
+        this.addObject(menu,-20,-20);
+        this.addObject(new StoryMode(),-20,-20);
+        this.addObject(new StoryModeSelect(),100,100);
+        this.addObject(new LevelSelectButton(),200,200);
         this.getBackground().scale(screenWidth,screenHeight);
     }
     public void act(){
@@ -42,11 +46,39 @@ public class GameWorld extends World
         if (!menu.menuActive()&&!LevelActive){
             LevelActive=true;
             currentLevel=menu.getCurrentLevel();
+            
             loadLevel(currentLevel);
+            menu=null;
         }
       }
+      if (StoryMode && !LevelActive){
+           loadLevel(currentStory);
+           LevelActive=true;
+      }
+      if (menu != null){
+          StoryMode=menu.getStoryMode();
+      }
+                
         if(startCell != null ){
             if ( startCell.beaten()){
+                if (StoryMode){
+                    if (getLevels().size()==currentStory){
+                        removeObjects(getObjects(Actor.class));
+                        StoryMode=false;
+                        
+                        LevelActive=false;
+                        menu=null;
+                        menu=new Menu(level_available);
+                        this.addObject(menu,0,0);
+                   this.addObject(new StoryModeSelect(),100,100);
+                   this.addObject(new LevelSelectButton(), 200, 200);
+                    }
+                    else{
+                    currentStory++;
+                    loadLevel(currentStory);
+                }
+                }
+                else{
                 LevelActive=false;
                 if (level_available==getLevels().size()){
                     
@@ -58,14 +90,14 @@ public class GameWorld extends World
                 startCell=null;
                 menu = new Menu(level_available);
                 this.addObject(menu,0,0);
-                
-                this.addObject(new LevelSelectButton(), 100, 100);
-                   
+                this.addObject(new StoryModeSelect(),100,100);
+                this.addObject(new LevelSelectButton(), 200, 200);
+              }
                   }
                     }                       }
     public void loadLevel(int level)
     {
-        removeObjects(getObjects(Actor.class)); // clear grid
+        removeObjects(getObjects(Actor.class)); 
         createGrid(level);
     } 
    

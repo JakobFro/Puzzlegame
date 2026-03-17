@@ -17,19 +17,19 @@ public class LevelSelectButton extends MainMenu
     {
         // Add your action code here.
         // when clicked set levelselect to true
-        System.out.println("LevelSelectButton.act() called");
-        MouseInfo mouse = Greenfoot.getMouseInfo();
+        
     
     
-        if (Greenfoot.mouseClicked(this)){
+        if (Click()){
             LevelSelect=true;
         }
         
     }
     public LevelSelectButton(){
         // sets size to 100X100
-        setImage("balloon2.png");
-        setSize(100,100);
+        GreenfootImage TextImag =new GreenfootImage("Level Select", 64, new Color(255,255,255), null);    
+        this.setImage(TextImag);
+        
     }
     public boolean getLevelSelect(){
         return LevelSelect;

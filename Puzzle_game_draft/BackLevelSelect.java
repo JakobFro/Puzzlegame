@@ -22,7 +22,9 @@ public class BackLevelSelect extends LevelSelectMenu
         }
     }
     public BackLevelSelect(){
-        
+        setSize(100,50);
+        GreenfootImage TextImag =new GreenfootImage("<- Back ", 64, new Color(255,255,255), null);    
+        this.setImage(TextImag);
     }
     public boolean getLevelSelect(){
         return LevelSelectb;

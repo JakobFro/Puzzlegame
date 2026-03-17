@@ -30,6 +30,7 @@ public class StartCell extends ActiveCell
     {
         // Add your action code here.
         // if this cell is clicked start logic and reset needed stuff
+      
         if (click()){
             start=true;
             this.setImage("InactiveCell.png.png");
