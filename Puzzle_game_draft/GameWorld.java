@@ -19,6 +19,9 @@ public class GameWorld extends World
     int currentLevel=1;
     static final int screenWidth=1000;
     static final int screenHeight=600;
+    StartCell startCell;
+    Menu menu;
+   
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -27,40 +30,56 @@ public class GameWorld extends World
     {    
         // Create a new world with screenwidthXscreenheight cells with a cell size of 1x1 pixels.
         super(screenWidth, screenHeight, 1); 
-        this.addObject(new Menu(level_available),0,0);
+        menu = new Menu(level_available);
+        this.addObject(menu,0,0);
         this.addObject(new LevelSelectButton(),100,100);
         this.getBackground().scale(screenWidth,screenHeight);
     }
     public void act(){
         //if there is a menu 
-        if(!this.getObjects(Menu.class).isEmpty()){
+        if(! (menu==null)){
             //if menu.menuactive=false and this.levelactive=false set level active to true and load level
-        if (!this.getObjects(Menu.class).get(0).menuActive()&&!LevelActive){
+        if (!menu.menuActive()&&!LevelActive){
             LevelActive=true;
-            currentLevel=this.getObjects(Menu.class).get(0).getCurrentLevel();
+            currentLevel=menu.getCurrentLevel();
             loadLevel(currentLevel);
         }
       }
-        if(!this.getObjects(StartCell.class).isEmpty()){
-            if (this.getObjects(StartCell.class).get(0).beaten()){
+        if(startCell != null ){
+            if ( startCell.beaten()){
                 LevelActive=false;
-                level_available=currentLevel+1;
+                if (level_available==getLevels().size()){
+                    
+                }
+                else if (level_available<currentLevel+1){
+                    level_available=currentLevel+1;
+                }
                 removeObjects(getObjects(Actor.class));
-                this.addObject(new Menu(level_available),0,0);
-                this.addObject(new LevelSelectButton(),100,100);
-            }
-        }
-    }
+                startCell=null;
+                menu = new Menu(level_available);
+                this.addObject(menu,0,0);
+                
+                this.addObject(new LevelSelectButton(), 100, 100);
+                   
+                  }
+                    }                       }
     public void loadLevel(int level)
     {
         removeObjects(getObjects(Actor.class)); // clear grid
         createGrid(level);
-    }  
+    } 
+   
+    public StartCell getStartCell() {
+        return startCell;
+    }
     public List getLevel(int level_ID){
         return levelcache.getLevel(level_ID); //get level from levelcache
     }
+    public Map getLevels(){
+        return levelcache.getLevels();
+    }
     public boolean getstart(){
-        return this.getObjects(StartCell.class).get(0).getstart();
+        return startCell != null && startCell.getstart();
     }
     public void createGrid(int level_ID){
         //gets the level map from LevelCache for a specific level
@@ -93,7 +112,8 @@ public class GameWorld extends World
                     addObject(new ActiveCell(cellSize), x, y);
                 }
                 else if(current == 2){
-                    addObject(new StartCell(cellSize), x, y);
+                    startCell = new StartCell(cellSize);
+                    addObject(startCell, x, y);
                 }
                 else if(current == 3){
                     addObject(new EndCell(cellSize), x, y);

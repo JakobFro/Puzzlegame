@@ -23,9 +23,14 @@ public class ActiveCell extends Cell
     public void act()
     {
         // Add your action code here.
-                if (this.getWorldOfType(GameWorld.class).getObjects(StartCell.class).get(0).getListOfAlredyActiveCells().contains(this)){            
+        for(int i=0;i<this.getWorldOfType(GameWorld.class).getObjects(StartCell.class).get(0).getListOfAlredyActiveCells().size();i++){
+            if (this.getWorldOfType(GameWorld.class).getObjects(StartCell.class).get(0).getListOfAlredyActiveCells().contains(this)){            
                 checked=true;
-            
+                break;
+            }
+            else{
+                checked=false;
+            }
         }
         
         if(checked){

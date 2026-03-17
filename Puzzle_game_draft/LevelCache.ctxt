@@ -6,4 +6,6 @@ comment1.target=LevelCache()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ LevelCache.\r\n\ \r\n
 comment2.params=level_ID
 comment2.target=java.util.List\ getLevel(int)
-numComments=3
+comment3.params=
+comment3.target=java.util.Map\ getLevels()
+numComments=4

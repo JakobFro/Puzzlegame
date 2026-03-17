@@ -24,7 +24,7 @@ public class EndCell extends ActiveCell
         
         cells=this.getWorldOfType(GameWorld.class).getObjects(ActiveCell.class);
         cells.removeAll(getWorldOfType(GameWorld.class).getObjects(EndCell.class));
-        cells.removeAll(getWorldOfType(GameWorld.class).getObjects(StartCell.class));
+        cells.remove(getWorldOfType(GameWorld.class).startCell);
         check=true;
             for (int i=0;i<cells.size();i++){
             if (!cells.get(i).getchecked()){

@@ -16,7 +16,6 @@ public class ToDo
     {
         /**
          * 
-         * Add funktion so that one is able to go back to the last square they have been on
          * make it so thet the levels unlock one after an other 
          * make saving posible
          * add story mode

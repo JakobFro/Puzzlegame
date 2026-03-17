@@ -10,28 +10,28 @@ public class LevelCache
 {
     
     Map<Integer, List<Integer>> levels = new HashMap<>();
-    List<Integer> Level_1 =List.of(100,
+    List<Integer> Level_2 =List.of(100,
                              0,0,0,0,1,1,0,0,0,0,
                              0,0,0,1,1,1,0,0,0,0,
                              0,0,2,1,1,1,1,1,0,0,
                              0,0,1,1,1,1,1,3,0,0,
                              0,0,0,1,1,1,1,0,0,0,
                              0,0,0,0,1,1,0,0,0,0);
-    List<Integer> Level_2 =List.of(100,
+    List<Integer> Level_3 =List.of(100,
                              0,0,0,0,1,1,0,0,0,0,
                              0,0,0,0,1,1,3,0,0,0,
                              0,0,1,1,1,1,1,1,0,0,
                              0,0,1,1,1,1,1,1,0,0,
                              0,0,0,2,1,1,1,0,0,0,
                              0,0,0,0,1,1,0,0,0,0);
-    List<Integer> Level_3 =List.of(100,
+    List<Integer> Level_4 =List.of(100,
                              0,0,0,0,1,1,1,0,0,0,
                              0,0,0,0,1,1,1,0,0,0,
                              0,0,1,1,2,3,1,1,0,0,
                              0,0,1,1,0,0,1,1,0,0,
                              0,0,0,1,1,1,1,0,0,0,
                              0,0,0,0,1,1,0,0,0,0);
-    List<Integer> Level_4 =List.of(50,
+    List<Integer> Level_5 =List.of(50,
                              0,0,1,1,0,0,1,1,0,0,0,1,1,1,1,0,0,0,0,0,
                              0,0,1,1,0,0,1,1,1,0,0,1,1,1,1,0,0,0,0,0,
                              1,1,1,1,2,3,1,0,1,1,1,1,1,1,1,0,0,0,0,0,
@@ -44,7 +44,7 @@ public class LevelCache
                              0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,1,
                              0,0,0,0,1,0,1,1,0,0,0,0,0,0,1,1,1,1,1,1,
                              0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0);
-    List<Integer> Level_5 =List.of(100,
+    List<Integer> Level_1 =List.of(100,
                              0,0,0,0,0,0,0,0,0,0,
                              0,0,0,0,0,0,0,0,0,0,
                              0,0,2,3,0,0,0,0,0,0,
@@ -66,5 +66,8 @@ public class LevelCache
     }
     public List getLevel(int level_ID){
         return levels.get(level_ID);
+    }
+    public Map getLevels(){
+        return levels;
     }
 }
