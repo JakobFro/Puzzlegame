@@ -45,12 +45,16 @@ public class StartCell extends ActiveCell
             // if only the mouse is not held reset logic
             else if (Greenfoot.mouseClicked(null)){
                 start=false;
+                ListOfAlredyActiveCells.clear();
+                currentCell=null;
                 this.setImage("StartCell_StateOne.png.png");
                 setSize(cellSize,cellSize);
             }
             // if there is an inactive cell under the mouse reset logic
             else if (getInactiveUnderMouse() != null) {
                 start = false;
+                ListOfAlredyActiveCells.clear();
+                currentCell=null;
                 setImage("StartCell_StateOne.png.png");
                 setSize(cellSize, cellSize);
             }

@@ -15,7 +15,7 @@ public class Menu extends Actor
     boolean menuActive=true;
     int currentLevel=1;
     boolean LevelSelect=false;
-    
+    int level_available;
     public void act()
     {
         // Add your action code here.
@@ -45,7 +45,7 @@ public class Menu extends Actor
         // if this.levelselect= true remove level select button and add all the levelbuttons aswell as backlevelselect
         if (LevelSelect){
             this.getWorld().addObject(new BackLevelSelect(),400,200);
-            for(int i=0;i<5;i++){
+            for(int i=0;i<level_available;i++){
                 this.getWorld().addObject(new LevelButton(i+1),100*i+100,100);
             }
             this.getWorld().removeObjects(this.getWorld().getObjects(LevelSelectButton.class));
@@ -54,6 +54,11 @@ public class Menu extends Actor
     }
     public Menu(){
         boolean menuActive=true;
+        
+    }
+    public Menu(int level_available){
+        boolean menuActive=true;
+        this.level_available=level_available;
     }
     
     public void setSize(int x,int y){

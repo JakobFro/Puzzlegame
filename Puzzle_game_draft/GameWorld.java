@@ -12,6 +12,7 @@ public class GameWorld extends World
     List<Integer> temp =Collections.<Integer>emptyList();
     int cellSize;
     int cellsPerRow;
+    int level_available=1;
     int cellsPerFile;
     int current;
     boolean LevelActive=false;
@@ -26,7 +27,7 @@ public class GameWorld extends World
     {    
         // Create a new world with screenwidthXscreenheight cells with a cell size of 1x1 pixels.
         super(screenWidth, screenHeight, 1); 
-        this.addObject(new Menu(),0,0);
+        this.addObject(new Menu(level_available),0,0);
         this.addObject(new LevelSelectButton(),100,100);
         this.getBackground().scale(screenWidth,screenHeight);
     }
@@ -36,14 +37,16 @@ public class GameWorld extends World
             //if menu.menuactive=false and this.levelactive=false set level active to true and load level
         if (!this.getObjects(Menu.class).get(0).menuActive()&&!LevelActive){
             LevelActive=true;
-            loadLevel(this.getObjects(Menu.class).get(0).getCurrentLevel());
+            currentLevel=this.getObjects(Menu.class).get(0).getCurrentLevel();
+            loadLevel(currentLevel);
         }
       }
         if(!this.getObjects(StartCell.class).isEmpty()){
             if (this.getObjects(StartCell.class).get(0).beaten()){
                 LevelActive=false;
+                level_available=currentLevel+1;
                 removeObjects(getObjects(Actor.class));
-                this.addObject(new Menu(),0,0);
+                this.addObject(new Menu(level_available),0,0);
                 this.addObject(new LevelSelectButton(),100,100);
             }
         }
