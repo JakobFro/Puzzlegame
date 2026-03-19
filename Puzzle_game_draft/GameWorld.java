@@ -68,6 +68,7 @@ public class GameWorld extends World
                         
                         LevelActive=false;
                         menu=null;
+                        currentStory=1;
                         menu=new Menu(level_available);
                         this.addObject(menu,0,0);
                    this.addObject(new StoryModeSelect(),100,100);
