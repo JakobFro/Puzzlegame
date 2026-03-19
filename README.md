@@ -1,4 +1,5 @@
 This is a Greenfoot Project
+To start download and open in Greenfoot
 
 Once a World is created the Game can be played trough or individual levels can be played trough with the level select menu. 
 The game itself is a game where you have to color all the squares and then reach the red square, you start on the green square.
