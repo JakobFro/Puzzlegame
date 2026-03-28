@@ -33,12 +33,20 @@ public class StartCell extends ActiveCell
       
         if (click()){
             start=true;
-            this.setImage("InactiveCell.png.png");
+            this.setImage("Start_tile_on.png.png");
             setSize(cellSize,cellSize);
             ListOfAlredyActiveCells.clear();
             currentCell=null;
         }
         if (start){
+            if (currentCell==this){
+                this.setImage("Start_tile_on_current.png.png");
+                setSize(cellSize,cellSize);
+            }
+            else{
+                this.setImage("Start_tile_on.png.png");
+                setSize(cellSize,cellSize);
+            }
             // if mouse is not held and end cell is checked beat level
             if(Greenfoot.mouseClicked(null) && this.getWorld().getObjects(EndCell.class).get(0).getchecked()){
                 LevelBeaten=true;
@@ -48,7 +56,7 @@ public class StartCell extends ActiveCell
                 start=false;
                 ListOfAlredyActiveCells.clear();
                 currentCell=null;
-                this.setImage("StartCell_StateOne.png.png");
+                this.setImage("Start_tile_off.png.png");
                 setSize(cellSize,cellSize);
             }
             // if there is an inactive cell under the mouse reset logic
@@ -56,17 +64,18 @@ public class StartCell extends ActiveCell
                 start = false;
                 ListOfAlredyActiveCells.clear();
                 currentCell=null;
-                setImage("StartCell_StateOne.png.png");
+                setImage("Start_tile_off.png.png");
                 setSize(cellSize, cellSize);
             }
             // if the mouse goes back to an alredy checked cell
             else if (getActiveUnderMouseCheckedAndNotInList()) {
-                setImage("StartCell_StateOne.png.png");
+                setImage("Start_tile_off.png.png");
                 setSize(cellSize, cellSize);
                 ListOfAlredyActiveCells.clear();
                 currentCell=null;
                 start = false;
             }
+            
         }
     }
     private InactiveCell getInactiveUnderMouse() {
@@ -109,6 +118,9 @@ public class StartCell extends ActiveCell
         }
     
         
+    }
+    public Actor getCurrentCell(){
+        return currentCell;
     }
     public List getListOfAlredyActiveCells(){
         return ListOfAlredyActiveCells;

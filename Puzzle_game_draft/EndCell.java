@@ -41,13 +41,19 @@ public class EndCell extends ActiveCell
             
             
         }
-        if(checked){
-            this.setImage("InactiveCell.png.png");
+        if(hover()){
+            if (this.getWorldOfType(GameWorld.class).startCell.getCurrentCell()==this){
+                this.setImage("Start_tile_on_current.png.png");
+            }
+            else{
+                this.setImage("End_Tile_off.png.png");
+            }
+            
         }
         else {
-            this.setImage("EndCell-2.png.png");
+            this.setImage("End_Tile_off.png.png");
         }
-        if(!this.getWorldOfType(GameWorld.class).getstart()){
+        if(!this.getWorldOfType(GameWorld.class).getstart() || !hover()){
             checked=false;
         }
         setSize(cellSize,cellSize);

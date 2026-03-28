@@ -35,10 +35,16 @@ public class ActiveCell extends Cell
         }
         
         if(checked){
-            this.setImage("InactiveCell.png.png");
+            if (this.getWorldOfType(GameWorld.class).startCell.getCurrentCell() == this){
+                this.setImage("Active_tile_on_current.png.png");
+            }
+            else{
+                this.setImage("Active_tile_on.png.png");
+            }
         }
+        
         else {
-            this.setImage("ActiveCell-1.png.png");
+            this.setImage("Active_tile_off.png.png");
         }
         if(!this.getWorldOfType(GameWorld.class).getstart()){
             checked=false;
