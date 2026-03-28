@@ -16,13 +16,13 @@ public class ToDo
     {
         /**
          * 
-         * make it so thet the levels unlock one after an other 
+         * 
          * make saving posible
-         * add story mode
+         * 
          * add story
          * add speedrun mode (story mode with timer)
          * add levelss
-         * add tilemap and logic in game world to get the right tile
+         * 
          * add backgroung for title screen and other menus
          */
         
