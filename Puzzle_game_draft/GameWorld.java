@@ -62,6 +62,11 @@ public class GameWorld extends World
         if(startCell != null ){
             if ( startCell.beaten()){
                 if (StoryMode){
+                    if (currentStory==1){
+                        //this.addObject(new TextBox("Cheese"),600,500);
+                        
+                    }
+                    
                     if (getLevels().size()==currentStory){
                         removeObjects(getObjects(Actor.class));
                         StoryMode=false;
@@ -69,7 +74,6 @@ public class GameWorld extends World
                         LevelActive=false;
                         menu=null;
                         currentStory=1;
-                        currentLevel=getLevels().size();
                         menu=new Menu(level_available);
                         this.addObject(menu,0,0);
                    this.addObject(new StoryModeSelect(),100,100);
@@ -77,8 +81,12 @@ public class GameWorld extends World
                     }
                     else{
                     currentStory++;
+                    if (currentStory> currentLevel){
+                        currentLevel=currentStory;
+                    }
                     loadLevel(currentStory);
                 }
+                
                 }
                 else{
                 LevelActive=false;
@@ -142,7 +150,7 @@ public class GameWorld extends World
 
                 if (current == 0){
                     if (index-cellsPerRow <1){
-                        if (index+1%cellsPerRow==0){
+                        if (index+1%cellsPerRow==0 || index==1){
                             if (temp.get(index+1)==0 && temp.get(index+cellsPerRow)==0){
                                 addObject(new InactiveCell(cellSize,16), x, y);
                             }
@@ -152,7 +160,7 @@ public class GameWorld extends World
                             else if (temp.get(index+1)!=0 && temp.get(index+cellsPerRow)!=0){
                                 addObject(new InactiveCell(cellSize,13), x, y);
                             }
-                            else {
+                            else if (temp.get(index+1)==0 && temp.get(index+cellsPerRow)!=0){
                                 addObject(new InactiveCell(cellSize,1), x, y);
                             }
                         }
@@ -166,7 +174,7 @@ public class GameWorld extends World
                             else if (temp.get(index-1)!=0 && temp.get(index+cellsPerRow)!=0){
                                 addObject(new InactiveCell(cellSize,15), x, y);
                             }
-                            else {
+                            else if (temp.get(index-1)==0 && temp.get(index+cellsPerRow)!=0){
                                 addObject(new InactiveCell(cellSize,1), x, y);
                             }
                         }
@@ -252,6 +260,58 @@ public class GameWorld extends World
                                 addObject(new InactiveCell(cellSize,8), x, y);
                             }
                         }   
+                    }
+                    else if  (index+1%cellsPerRow==0 ){
+                        if (temp.get(index+1)==0 && temp.get(index+cellsPerRow)==0 && temp.get(index-cellsPerRow)==0){
+                                addObject(new InactiveCell(cellSize,16), x, y);
+                            }
+                            else if (temp.get(index+1)!=0 && temp.get(index+cellsPerRow)==0 && temp.get(index-cellsPerRow)==0){
+                                addObject(new InactiveCell(cellSize,3), x, y);
+                            }
+                            else if (temp.get(index+1)!=0 && temp.get(index+cellsPerRow)!=0 && temp.get(index-cellsPerRow)==0){
+                                addObject(new InactiveCell(cellSize,13), x, y);
+                            }
+                            else if (temp.get(index+1)==0 && temp.get(index+cellsPerRow)!=0 && temp.get(index-cellsPerRow)==0){
+                                addObject(new InactiveCell(cellSize,1), x, y);
+                            }
+                            else if (temp.get(index+1)==0 && temp.get(index+cellsPerRow)==0 && temp.get(index-cellsPerRow)!=0){
+                                addObject(new InactiveCell(cellSize,4), x, y);
+                            }
+                            else if (temp.get(index+1)!=0 && temp.get(index+cellsPerRow)==0 && temp.get(index-cellsPerRow)!=0){
+                                addObject(new InactiveCell(cellSize,12), x, y);
+                            }
+                            else if (temp.get(index+1)!=0 && temp.get(index+cellsPerRow)!=0 && temp.get(index-cellsPerRow)!=0){
+                                addObject(new InactiveCell(cellSize,7), x, y);
+                            }
+                            else if (temp.get(index+1)==0 && temp.get(index+cellsPerRow)!=0 && temp.get(index-cellsPerRow)!=0){
+                                addObject(new InactiveCell(cellSize,6), x, y);
+                            }
+                    }
+                    else if  (index%cellsPerRow==0 ){
+                        if (temp.get(index-1)==0 && temp.get(index+cellsPerRow)==0 && temp.get(index-cellsPerRow)==0){
+                                addObject(new InactiveCell(cellSize,16), x, y);
+                            }
+                            else if (temp.get(index-1)!=0 && temp.get(index+cellsPerRow)==0 && temp.get(index-cellsPerRow)==0){
+                                addObject(new InactiveCell(cellSize,2), x, y);
+                            }
+                            else if (temp.get(index-1)!=0 && temp.get(index+cellsPerRow)!=0 && temp.get(index-cellsPerRow)==0){
+                                addObject(new InactiveCell(cellSize,15), x, y);
+                            }
+                            else if (temp.get(index-1)==0 && temp.get(index+cellsPerRow)!=0 && temp.get(index-cellsPerRow)==0){
+                                addObject(new InactiveCell(cellSize,1), x, y);
+                            }
+                            else if (temp.get(index-1)==0 && temp.get(index+cellsPerRow)==0 && temp.get(index-cellsPerRow)!=0){
+                                addObject(new InactiveCell(cellSize,4), x, y);
+                            }
+                            else if (temp.get(index-1)!=0 && temp.get(index+cellsPerRow)==0 && temp.get(index-cellsPerRow)!=0){
+                                addObject(new InactiveCell(cellSize,14), x, y);
+                            }
+                            else if (temp.get(index-1)!=0 && temp.get(index+cellsPerRow)!=0 && temp.get(index-cellsPerRow)!=0){
+                                addObject(new InactiveCell(cellSize,9), x, y);
+                            }
+                            else if (temp.get(index-1)==0 && temp.get(index+cellsPerRow)!=0 && temp.get(index-cellsPerRow)!=0){
+                                addObject(new InactiveCell(cellSize,6), x, y);
+                            }
                     }
                     else{
                     if (temp.get(index+1)==0 && temp.get(index-1)==0 && temp.get(index-cellsPerRow)==0 && temp.get(index+cellsPerRow)==0){

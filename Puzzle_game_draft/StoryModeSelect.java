@@ -18,6 +18,9 @@ public class StoryModeSelect extends StoryMode
         // Add your action code here.
         if (Click()){
             StoryMode=true;
+            if (!(this.getWorldOfType(GameWorld.class).currentStory>1)){
+                //this.getWorld().addObject(new TextBox("cheese"),500,300);
+            }
         }
     }
     public StoryModeSelect(){

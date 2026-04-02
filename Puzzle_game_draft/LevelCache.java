@@ -17,6 +17,13 @@ public class LevelCache
                              0,0,1,1,1,1,1,3,0,0,
                              0,0,0,1,1,1,1,0,0,0,
                              0,0,0,0,1,1,0,0,0,0);
+    List<Integer> Level_5 =List.of(100,
+                             0,0,0,0,1,1,0,0,0,0,
+                             0,0,0,1,1,1,1,0,0,0,
+                             0,0,2,1,1,1,1,1,0,0,
+                             0,0,1,1,3,1,1,1,0,0,
+                             0,0,0,1,1,1,1,0,0,0,
+                             0,0,0,0,1,1,0,0,0,0);
     List<Integer> Level_3 =List.of(100,
                              0,0,0,0,1,1,0,0,0,0,
                              0,0,0,0,1,1,3,0,0,0,
@@ -31,7 +38,7 @@ public class LevelCache
                              0,0,1,1,0,0,1,1,0,0,
                              0,0,0,1,1,1,1,0,0,0,
                              0,0,0,0,1,1,0,0,0,0);
-    List<Integer> Level_5 =List.of(50,
+    List<Integer> Level_6 =List.of(50,
                              0,0,1,1,0,0,1,1,0,0,0,1,1,1,1,0,0,0,0,0,
                              0,0,1,1,0,0,1,1,1,0,0,1,1,1,1,0,0,0,0,0,
                              1,1,1,1,2,3,1,0,1,1,1,1,1,1,1,0,0,0,0,0,
@@ -63,6 +70,7 @@ public class LevelCache
           levels.put(3, Level_3);
           levels.put(4, Level_4);
           levels.put(5, Level_5);
+          levels.put(6, Level_6);
     }
     public List getLevel(int level_ID){
         return levels.get(level_ID);

@@ -17,7 +17,7 @@ public class ToDo
         /**
          * 
          * 
-         * make saving posible
+         * make saving posible (optional)
          * 
          * add story
          * add speedrun mode (story mode with timer)
