@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class TextBox extends StoryMode
+public class TextBox extends Actor
 {
     /**
      * Act - do whatever the TextBox wants to do. This method is called whenever
@@ -26,6 +26,9 @@ public class TextBox extends StoryMode
     }
     public TextBox(String text){
         setImage(new GreenfootImage(text,30,null,null));
-        System.out.println("TextBox created");
+        //System.out.println("TextBox created");
+    }
+    public boolean Click(){
+        return Greenfoot.mousePressed(this);
     }
 }

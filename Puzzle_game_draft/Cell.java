@@ -6,7 +6,7 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Cell extends Actor
+abstract class Cell extends Actor
 {
     /**
      * Act - do whatever the Cell wants to do. This method is called whenever

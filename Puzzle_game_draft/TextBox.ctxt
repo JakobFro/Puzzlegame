@@ -5,4 +5,6 @@ comment1.params=
 comment1.target=void\ act()
 comment2.params=text
 comment2.target=TextBox(java.lang.String)
-numComments=3
+comment3.params=
+comment3.target=boolean\ Click()
+numComments=4

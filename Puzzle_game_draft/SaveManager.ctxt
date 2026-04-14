@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=SaveManager
+comment1.params=data
+comment1.target=void\ saveData(java.lang.String)
+comment1.text=\r\n\ Save\ a\ string\ (e.g.,\ score\ or\ level)\ to\ a\ file.\r\n
+comment2.params=
+comment2.target=java.lang.String\ loadData()
+comment2.text=\r\n\ Load\ the\ saved\ string\ from\ the\ file.\r\n
+numComments=3

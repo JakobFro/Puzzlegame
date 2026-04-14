@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
+import java.util.stream.*;
 /**
  * Write a description of class MyWorld here.
  * 
@@ -9,6 +10,7 @@ import java.util.*;
 public class GameWorld extends World
 {
     LevelCache levelcache =new LevelCache();
+    SaveManager saveManager =new SaveManager();
     List<Integer> temp =Collections.<Integer>emptyList();
     int cellSize;
     int cellsPerRow;
@@ -19,6 +21,7 @@ public class GameWorld extends World
     boolean LevelActive=false;
     int currentLevel=1;
     int currentStory=1;
+    int Tutorial=1;
     static final int screenWidth=1000;
     static final int screenHeight=600;
     StartCell startCell;
@@ -32,6 +35,8 @@ public class GameWorld extends World
     {    
         // Create a new world with screenwidthXscreenheight cells with a cell size of 1x1 pixels.
         super(screenWidth, screenHeight, 1); 
+        currentStory=load(1);
+        level_available=load(0);
         menu = new Menu(level_available);
         this.addObject(menu,-20,-20);
         this.addObject(new StoryMode(),-20,-20);
@@ -41,6 +46,8 @@ public class GameWorld extends World
     }
     public void act(){
         //if there is a menu 
+        currentStory=load(1);
+        level_available=load(0);
         if(! (menu==null)){
             //if menu.menuactive=false and this.levelactive=false set level active to true and load level
         if (!menu.menuActive()&&!LevelActive){
@@ -54,6 +61,10 @@ public class GameWorld extends World
       if (StoryMode && !LevelActive){
            loadLevel(currentStory);
            LevelActive=true;
+           if (currentStory==1){
+                        this.addObject(new TextBox("Cheese"),600,500);
+                        
+                    }
       }
       if (menu != null){
           StoryMode=menu.getStoryMode();
@@ -62,10 +73,7 @@ public class GameWorld extends World
         if(startCell != null ){
             if ( startCell.beaten()){
                 if (StoryMode){
-                    if (currentStory==1){
-                        //this.addObject(new TextBox("Cheese"),600,500);
-                        
-                    }
+                    
                     
                     if (getLevels().size()==currentStory){
                         removeObjects(getObjects(Actor.class));
@@ -104,7 +112,18 @@ public class GameWorld extends World
                 this.addObject(new LevelSelectButton(), 200, 200);
               }
                   }
-                    }                       }
+                    }
+        save();
+        currentStory=load(1);
+                }
+    public  void save(){
+        saveManager.saveData(Integer.toString(level_available)+currentStory+Tutorial);
+    }
+    public int load(int SOrI){
+         String temp= saveManager.loadData();
+         List<Character> charList = temp.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
+         return Integer.parseInt(String.valueOf(charList.get(SOrI)));
+    }
     public void loadLevel(int level)
     {
         removeObjects(getObjects(Actor.class)); 
